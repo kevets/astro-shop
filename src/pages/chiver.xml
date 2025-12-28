@@ -1,0 +1,28 @@
+---
+import BaseHead from '../components/BaseHead.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import { SITE_TITLE, SITE_DESCRIPTION } from '../consts';
+---
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=1920, height=1080, initial-scale=1.0">
+    <title>chiver</title>
+    <link rel="stylesheet" type="text/css" href="css/style.css" />
+    <script type="text/javascript" src="$WEBAPIS_JS$"></script>
+</head>
+<body>
+    <div id="app">
+        <header>
+            <h1>Primal Video Display</h1>
+            <p id="status">Connecting to Nostr...</p>
+        </header>
+        <div id="video-grid" class="grid">
+            </div>
+    </div>
+    <script src="https://unpkg.com/nostr-tools/lib/nostr.bundle.js"></script>
+    <script src="js/main.js"></script>
+</body>
+</html>
