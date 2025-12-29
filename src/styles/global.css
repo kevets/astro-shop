@@ -135,18 +135,6 @@ hr {
 		padding: 1em;
 	}
 }
-// Register remote keys
-window.addEventListener('keydown', function(e) {
-    switch(e.keyCode) {
-        case 10009: // Return/Back key for Samsung
-            if (document.querySelector('video')) {
-                document.querySelector('video').remove();
-            } else {
-                tizen.application.getCurrentApplication().exit();
-            }
-            break;
-    }
-});
 .sr-only {
 	border: 0;
 	padding: 0;
