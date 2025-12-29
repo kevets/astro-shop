@@ -8,35 +8,60 @@ import { SITE_TITLE, SITE_DESCRIPTION } from '../consts';
 <!doctype html>
 <html lang="en">
 	<head>
+		<script src="https://cdn.jsdelivr.net/npm/qrcode@1.5.1/build/qrcode.min.js"></script>
 		<BaseHead title={SITE_TITLE} description={SITE_DESCRIPTION} />
 	</head>
 	<body>
 		<Header />
 		<main>
 <h1>🔥Small Batch Steve's Seasonings🔥</h1>
-Take My Sats Featured Product: Small Survival Seasoning <svg class="icon icon--full-color" viewBox="0 0 38 24" xmlns="http://www.w3.org/2000/svg" width="38" height="24" role="img" aria-labelledby="pi-bitcoin"><title id="pi-bitcoin">Bitcoin</title><path opacity=".07" d="M35 0H3C1.3 0 0 1.3 0 3v18c0 1.7 1.4 3 3 3h32c1.7 0 3-1.3 3-3V3c0-1.7-1.4-3-3-3z"></path><path fill="#22211E" d="M35 1c1.1 0 2 .9 2 2v18c0 1.1-.9 2-2 2H3c-1.1 0-2-.9-2-2V3c0-1.1.9-2 2-2h32"></path><path fill="#EDA024" d="M21.6 4.4c-4.2-1.4-8.7.8-10.2 5s.8 8.7 5 10.2 8.7-.8 10.2-5c1.4-4.2-.8-8.7-5-10.2z"></path><path fill="#22211E" d="M16.1 8.3l.3-1c.6.2 1.3.4 1.9.7.2-.5.4-1 .5-1.6l.9.3-.5 1.5.8.3.5-1.5.9.3c-.2.5-.4 1-.5 1.6l.4.2c.3.2.6.4.9.7.3.3.4.6.5 1 0 .3 0 .6-.2.9-.2.5-.5.8-1.1.9h-.2c.2.1.3.2.4.4.4.4.5.8.4 1.4 0 .1 0 .2-.1.3 0 .1 0 .1-.1.2-.1.2-.2.3-.2.5-.3.5-.8.9-1.5.9-.5 0-1 0-1.4-.1l-.4-.1c-.2.5-.4 1-.5 1.6l-.9-.3c.2-.5.4-1 .5-1.5l-.8-.3c-.2.5-.4 1-.5 1.5l-.9-.3c.2-.5.4-1 .5-1.6l-1.9-.6.6-1.1c.2.1.5.2.7.2.2.1.4 0 .5-.2L17 9.3v-.1c0-.3-.1-.5-.4-.5 0-.2-.2-.3-.5-.4zm1.2 6c.5.2.9.3 1.3.4.3.1.5.1.8.1.2 0 .3 0 .5-.1.5-.3.6-1 .2-1.4l-.6-.5c-.3-.2-.7-.3-1.1-.4-.1 0-.3-.1-.4-.2l-.7 2.1zm1-3.1c.3.1.5.2.7.2.3.1.6.2.9.1.4 0 .7-.1.8-.5.1-.3.1-.6 0-.8-.1-.2-.3-.3-.5-.4-.3-.2-.6-.3-1-.4l-.3-.1c-.1.7-.4 1.3-.6 1.9z"></path></svg><br>
-<iframe data-testid="embed-iframe" style="border-radius:12px" src="https://www.takemysats.com/small-batch-steve" width="85%" height="600" frameBorder="3" allowfullscreen="" clipboard-write; fullscreen; picture-in-picture" loading="lazy"></iframe><br>
-Don't have Lightning? Here is how to set up a lightning spending wallet in 5 easy steps:<br>
-* Set up a Strike account</br>
-* Set up lightning wallet (recommendations include Rizful.com, Alby.com, Primal.net)</br>
-* Order [BITCOIN/SATOSHIS/SATS] in Strike</br>
-* Send SATS from Strike to lightning wallet</br>
-* Enjoy!</br</br>
-Still need to purchase in USD? Click <a href="https://buy.stripe.com/fZu7sK1WX6kzbsu64B2sM0c">here</a> to use our Stripe purchasing page.<br>
-<script async src="https://js.stripe.com/v3/pricing-table.js"></script>
-<stripe-pricing-table pricing-table-id="prctbl_1SdiK7CeHKmT1J7n6OZ8u5Gu"
-publishable-key="pk_live_51Lv354CeHKmT1J7neSKTY3M9lISMr3LzWql25KXpi1UOTxeufVGMC3oZ1h4lMWCiDeSVoxMDJqGCf2nyQhETPA1w00B5OKjzt1">
-</stripe-pricing-table>
+Shipping is US only currently (December, 2025)<br>
+Bitcoin users: Buy Survival Seasoning at https://www.takemysats.com/small-batch-steve<br>
+LNQR users:
+<button onclick="openLightningModal('lnbc145470n1p54ru65pp52qhj6ng53pljm86j9d5r6rlfnqtnrqq06nnq5w4dyyvl2wx9lpusdq4wd38xttnwvez6umdv9kxccqzysxqyz5vqrzjqv3dpepm8kfdxrk3sl6wzqdf49s9c0h9ljtjrek6c08r6aejlwcnur0dwyqqvaqqqyqqqqlgqqqq86qqjqsp5f27m0mc2082w4xunv3728aymy7uxlk87zpcy2fxh8u7cmkqz9dtq9qxpqysgqclndxq0szavn8n2ykjrdlywtp8neqrdhww6n3hz3agympmn3tp39972wacu6vf44kgsc55z3j5pgc23frjazhvnddxnd6vunfm7tgycpylftq0') " class="bg-orange-600 hover:bg-orange-700 text-black font-black px-6 py-3 uppercase font-mono shadow-[4px_4px_0px_0px_rgba(255,107,0,0.3)]">
+  Pay with Lightning
+</button>
+
+<div id="qr-modal" class="fixed inset-0 z-50 hidden bg-black/90 backdrop-blur-sm flex items-center justify-center p-4">
+  <div class="bg-zinc-900 border-2 border-orange-600 w-full max-w-md p-6 font-mono relative">
+    
+    <button onclick="closeModal()" class="absolute top-2 right-2 text-zinc-500 hover:text-white text-xl">
+      [X]
+    </button>
+
+    <div class="text-center">
+      <h3 class="text-orange-500 font-bold uppercase tracking-widest mb-2">Inbound Signal: Lightning</h3>
+      <div class="bg-white p-4 inline-block rounded-sm mb-4" id="canvas-container">
+        <div id="qrcode-target"></div>
+      </div>
+
+      <div class="bg-black border border-zinc-800 p-3 mb-6">
+        <p class="text-[10px] text-zinc-500 uppercase mb-1 text-left">Invoice ID</p>
+        <p id="invoice-text" class="text-[10px] text-white break-all text-left font-mono"></p>
+      </div>
+
+      <button onclick="copyInvoice()" class="w-full border border-orange-600 text-orange-600 hover:bg-orange-600 hover:text-black py-2 text-xs uppercase transition-all">
+        Copy Invoice String
+      </button>
+    </div>
+  </div>
+</div>
+
+USD users: Buy Survival Seasoning at https://buy.stripe.com/fZu7sK1WX6kzbsu64B2sM0c<br>
 <br>
 <h2>SITE UPDATES: 12.28.2025 site updates</h2>
 <p><a href="https://smallbatchsteve.printful.me/">SBS Outfitters</a> (via printful) launched with initial tee shirt design. Send a message, and support SBS!<br>
 smallbatchsteve.com domain has been activated and is live! Our previous URL shop.sbasp.com site will remain active. OOH WEE!</p><br>
 
 <h3>Previous updates...</h3>
-Shop page updated with music player, Stripe product table and chat module. Enjoy!<br>
-Batch 2: Small Survival Seasoning jars prepared - 3oz per new glass jar, perfect for gifts or for someone looking to try our rub.<br>
-Enough to cook for 2 briskets or 2-3 racks of ribs.<br>
-Try some today!<br>
+Small Survival Seasoning Batch 2 prepared - December 2025 Single jar rates
+
+$13 for a small 4 oz jar (lnbc145470n1p54ru65pp52qhj6ng53pljm86j9d5r6rlfnqtnrqq06nnq5w4dyyvl2wx9lpusdq4wd38xttnwvez6umdv9kxccqzysxqyz5vqrzjqv3dpepm8kfdxrk3sl6wzqdf49s9c0h9ljtjrek6c08r6aejlwcnur0dwyqqvaqqqyqqqqlgqqqq86qqjqsp5f27m0mc2082w4xunv3728aymy7uxlk87zpcy2fxh8u7cmkqz9dtq9qxpqysgqclndxq0szavn8n2ykjrdlywtp8neqrdhww6n3hz3agympmn3tp39972wacu6vf44kgsc55z3j5pgc23frjazhvnddxnd6vunfm7tgycpylftq0)
+
+$21 for a medium 8oz jar (lnbc234990n1p54rulepp5yxuc3zpg4ykst8zkrzpn7dkhp97vcjm75uj726kx3qzx3s5s4lvqdqjwd38xttnwvez6mt9vscqzysxqyz5vqrzjqv3dpepm8kfdxrk3sl6wzqdf49s9c0h9ljtjrek6c08r6aejlwcnur0dwyqqvucqqqqqqqlgqqqq86qqjqsp53z6u7e76afjjeqga70jylfsr45hg6nxxkft2nw4pnhhuhey6n9uq9qxpqysgqylrqflcqn6u5krwzcuxyj994g2ue74cv4ahl8txd9spvyaghr4xq8muv3dktg25lax7u33pf5vwgm7lsp527ghtckqw4736n5ummkwcqsw60zn)
+
+$29 for a large 16oz jar (lnbc324500n1p54rap3pp5t8wll5vrmt8n27hrmfdetmtqrqfk3ju3cfln8v2nmv53xv3l5lrsdq4wd38xttnwvez6mrpwfnk2cqzysxqyz5vqrzjqv3dpepm8kfdxrk3sl6wzqdf49s9c0h9ljtjrek6c08r6aejlwcnur0dwyqqvucqqqqqqqlgqqqq86qqjqsp5v9j2cncrwts4y7pzp68xatezxkml9j6da6daaa2809yusn8gqrgs9qxpqysgqll7drp8nmqaf6mcplgsz067jj9nl97knspwrc3u85g2vqyptc6wh02vlzqdhdqmy79u9t0rcv43s632j8lnfsu3kwneslfv923lm8fqpgxswpm)
+
 
 			SBS Jukebox<br>
 			<iframe data-testid="embed-iframe" style="border-radius:12px" src="https://open.spotify.com/embed/playlist/37i9dQZEVXddiztbpvZb2l?utm_source=generator&theme=0" width="100%" height="400" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe><br>
