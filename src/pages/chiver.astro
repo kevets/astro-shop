@@ -55,51 +55,6 @@ import { SITE_TITLE, SITE_DESCRIPTION } from '../consts';
         </button>
     </div>
 </div>
-// Load the QR library in your head:
-// <script src="https://cdn.jsdelivr.net/npm/qrcode@1.5.1/build/qrcode.min.js"></script>
-
-const LIGHTNING_ADDRESS = "smallbatchsteve@rizful.com"; // Replace with your actual LN Address
-
-function toggleTip() {
-    const overlay = document.getElementById('tip-overlay');
-    const isHidden = overlay.classList.contains('hidden');
-    
-    if (isHidden) {
-        generateTipQR();
-        overlay.classList.remove('hidden');
-    } else {
-        overlay.classList.add('hidden');
-    }
-}
-
-function generateTipQR() {
-    const target = document.getElementById('tip-qr');
-    target.innerHTML = ''; // Clear previous
-
-    // We use the lightning: prefix to trigger wallet apps
-    QRCode.toString(`lightning:${LIGHTNING_ADDRESS}`, {
-        type: 'svg',
-        color: { dark: '#000000', light: '#FFFFFF' },
-        width: 300,
-        margin: 1
-    }, function (err, svg) {
-        if (err) return console.error(err);
-        target.innerHTML = svg;
-    });
-}
-
-// Remote Key Support: Map the 'Yellow' button (if available) or 'C' key
-window.addEventListener('keydown', (e) => {
-    // 67 is 'c' key, often mapped to specialized TV buttons
-    if (e.keyCode === 67) { 
-        toggleTip();
-    }
-    // Standard back button closes the tip
-    if (e.key === 'Escape' || e.key === 'Backspace' || e.keyCode === 10009) {
-        document.getElementById('tip-overlay').classList.add('hidden');
-    }
-});
-
 <script>
     const STEVE_PUBKEY = "82341f882b6dbaa0d6d56d56d56d56d56d56d56d56d56d56d56d56d56d56d56d";
     const RELAY = "wss://relay.primal.net";
@@ -159,6 +114,51 @@ window.addEventListener('keydown', (e) => {
             document.getElementById('tv-player').pause();
         }
     });
+
+// Load the QR library in your head:
+// <script src="https://cdn.jsdelivr.net/npm/qrcode@1.5.1/build/qrcode.min.js"></script>
+
+const LIGHTNING_ADDRESS = "smallbatchsteve@rizful.com"; // Replace with your actual LN Address
+
+function toggleTip() {
+    const overlay = document.getElementById('tip-overlay');
+    const isHidden = overlay.classList.contains('hidden');
+    
+    if (isHidden) {
+        generateTipQR();
+        overlay.classList.remove('hidden');
+    } else {
+        overlay.classList.add('hidden');
+    }
+}
+
+function generateTipQR() {
+    const target = document.getElementById('tip-qr');
+    target.innerHTML = ''; // Clear previous
+
+    // We use the lightning: prefix to trigger wallet apps
+    QRCode.toString(`lightning:${LIGHTNING_ADDRESS}`, {
+        type: 'svg',
+        color: { dark: '#000000', light: '#FFFFFF' },
+        width: 300,
+        margin: 1
+    }, function (err, svg) {
+        if (err) return console.error(err);
+        target.innerHTML = svg;
+    });
+}
+
+// Remote Key Support: Map the 'Yellow' button (if available) or 'C' key
+window.addEventListener('keydown', (e) => {
+    // 67 is 'c' key, often mapped to specialized TV buttons
+    if (e.keyCode === 67) { 
+        toggleTip();
+    }
+    // Standard back button closes the tip
+    if (e.key === 'Escape' || e.key === 'Backspace' || e.keyCode === 10009) {
+        document.getElementById('tip-overlay').classList.add('hidden');
+    }
+});
 
     init();
 </script>
