@@ -1,0 +1,59 @@
+---
+/**
+ * WavlakePodcastPlayer.astro
+ * Embedded player for Wavlake podcasts
+ */
+
+interface Props {
+  /** Wavlake embed URL (podcast or episode) */
+  src?: string;
+
+  /** Optional heading above the player */
+  title?: string;
+
+  /** Player height */
+  height?: string;
+}
+
+const {
+  src = "https://wavlake.com/podcast/news-and-guidance",
+  title = "News & Guidance Podcast",
+  height = "180px",
+} = Astro.props;
+---
+
+<section class="wavlake-player">
+  {title && <h3>{title}</h3>}
+
+  <iframe
+    src={src}
+    loading="lazy"
+    allow="autoplay; clipboard-write; encrypted-media; fullscreen"
+    title="Wavlake Podcast Player"
+  />
+</section>
+
+<style>
+  .wavlake-player {
+    margin: 2rem 0;
+  }
+
+  .wavlake-player h3 {
+    margin-bottom: 0.75rem;
+    font-size: 1.25rem;
+  }
+
+  .wavlake-player iframe {
+    width: 100%;
+    height: var(--player-height);
+    border: none;
+    border-radius: 10px;
+    background: transparent;
+  }
+</style>
+
+<style define:vars>
+  :root {
+    --player-height: {height};
+  }
+</style>
