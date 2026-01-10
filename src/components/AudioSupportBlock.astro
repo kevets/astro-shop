@@ -13,6 +13,8 @@ const {
   nostrUrl,
   lnurl,
   title = "Support Independent Audio",
+  lightningAddress = "smallbatchsteve@rizful.com",
+  lightningURI = "lightning:${lightningAddress}"
 } = Astro.props;
 ---
 
@@ -38,34 +40,29 @@ const {
     />
   )}
 
-  <!-- CTA Row -->
-  <div class="cta-row">
-    {lnurl && (
-      <button class="lightning" onclick={`navigator.clipboard.writeText('${lnurl}')`}>
-        ⚡ Support with Lightning
-      </button>
-    )}
-
+<div class="cta-row">
+  <!-- Lightning deep link -->
+  <a class="lightning" href={lightningURI}>
+    ⚡ Support with Lightning
+  </a>
     {nostrUrl && (
       <a href={nostrUrl} target="_blank" rel="noopener" class="nostr">
         🟣 Follow on Nostr
       </a>
     )}
-  </div>
+</div>
+<details class="qr">
+  <summary>🧲 Show Lightning QR</summary>
 
-  <!-- QR Overlay -->
-  {lnurl && (
-    <details class="qr">
-      <summary>🧲 Show Lightning QR</summary>
-      <img
-        src={`https://api.qrserver.com/v1/create-qr-code/?size=240x240&data=${encodeURIComponent(
-          lnurl
-        )}`}
-        alt="Lightning QR Code"
-      />
-      <small>{lnurl}</small>
-    </details>
-  )}
+  <img
+    src={`https://api.qrserver.com/v1/create-qr-code/?size=240x240&data=${encodeURIComponent(
+      lnurlEndpoint
+    )}`}
+    alt="Lightning Address QR"
+  />
+  <small>{lightningAddress}</small>
+</details>
+
 </section>
 
 <style>
