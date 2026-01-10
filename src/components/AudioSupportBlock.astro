@@ -1,0 +1,156 @@
+---
+interface Props {
+  lnbeatsUrl: string
+  wavlakeUrl?: string
+  nostrUrl?: string
+  lnurl?: string
+  title?: string
+}
+
+const {
+  lnbeatsUrl,
+  wavlakeUrl,
+  nostrUrl,
+  lnurl,
+  title = "Support Independent Audio",
+} = Astro.props;
+---
+
+<section class="audio-block">
+  <h2>{title}</h2>
+
+  <!-- LNbeats Player -->
+  <iframe
+    src={lnbeatsUrl}
+    loading="lazy"
+    allow="autoplay; encrypted-media"
+    title="LNbeats Playlist"
+  />
+
+  <!-- Wavlake (optional) -->
+  {wavlakeUrl && (
+    <iframe
+      src={wavlakeUrl}
+      loading="lazy"
+      allow="autoplay; encrypted-media"
+      title="Wavlake Player"
+      class="wavlake"
+    />
+  )}
+
+  <!-- CTA Row -->
+  <div class="cta-row">
+    {lnurl && (
+      <button class="lightning" onclick={`navigator.clipboard.writeText('${lnurl}')`}>
+        ⚡ Support with Lightning
+      </button>
+    )}
+
+    {nostrUrl && (
+      <a href={nostrUrl} target="_blank" rel="noopener" class="nostr">
+        🟣 Follow on Nostr
+      </a>
+    )}
+  </div>
+
+  <!-- QR Overlay -->
+  {lnurl && (
+    <details class="qr">
+      <summary>🧲 Show Lightning QR</summary>
+      <img
+        src={`https://api.qrserver.com/v1/create-qr-code/?size=240x240&data=${encodeURIComponent(
+          lnurl
+        )}`}
+        alt="Lightning QR Code"
+      />
+      <small>{lnurl}</small>
+    </details>
+  )}
+</section>
+
+<style>
+  :root {
+    --bg: #f9f7f4;
+    --fg: #1a1a1a;
+    --accent: #ffb000;
+    --border: #ddd;
+  }
+
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --bg: #121212;
+      --fg: #f5f5f5;
+      --border: #2a2a2a;
+    }
+  }
+
+  .audio-block {
+    background: var(--bg);
+    color: var(--fg);
+    padding: 1.5rem;
+    border-radius: 16px;
+    border: 1px solid var(--border);
+    max-width: 720px;
+    margin: 2rem auto;
+  }
+
+  h2 {
+    margin-bottom: 1rem;
+    font-size: 1.4rem;
+  }
+
+  iframe {
+    width: 100%;
+    height: 420px;
+    border: none;
+    border-radius: 12px;
+    margin-bottom: 1rem;
+  }
+
+  .wavlake {
+    height: 180px;
+  }
+
+  .cta-row {
+    display: flex;
+    gap: 1rem;
+    flex-wrap: wrap;
+    margin-top: 0.5rem;
+  }
+
+  .lightning {
+    background: var(--accent);
+    color: #000;
+    border: none;
+    border-radius: 999px;
+    padding: 0.6rem 1.1rem;
+    font-weight: 600;
+    cursor: pointer;
+  }
+
+  .nostr {
+    border: 1px solid var(--border);
+    border-radius: 999px;
+    padding: 0.6rem 1.1rem;
+    text-decoration: none;
+    color: var(--fg);
+  }
+
+  .qr {
+    margin-top: 1rem;
+  }
+
+  .qr img {
+    margin-top: 0.75rem;
+    border-radius: 12px;
+    background: #fff;
+    padding: 0.5rem;
+  }
+
+  small {
+    display: block;
+    margin-top: 0.5rem;
+    word-break: break-all;
+    opacity: 0.75;
+  }
+</style>
